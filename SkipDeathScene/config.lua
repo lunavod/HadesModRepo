@@ -1,5 +1,8 @@
 ModUtil.RegisterMod("SkipDeathScene")
 
-SkipDeathScene.Data.Config = {
-    Enabled = true
+SkipDeathScene = {
+    Config = {
+        Enabled = true,
+        SpawnInTrainingRoomOnFail = false
+    }
 }

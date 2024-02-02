@@ -1,4 +1,4 @@
-if SkipDeathScene.Data.Config.Enabled then
+if SkipDeathScene.Config.Enabled then
 	ModUtil.BaseOverride("HandleDeath", function (currentRun, killer, killingUnitWeapon)
 		if GetConfigOptionValue({ Name = "EditingMode" }) then
 			SetAnimation({ Name = "ZagreusDeadStartBlood", DestinationId = currentRun.Hero.ObjectId })
@@ -52,6 +52,9 @@ if SkipDeathScene.Data.Config.Enabled then
 
 		local currentRoom = currentRun.CurrentRoom
 		local deathMap = "DeathArea"
+		if SkipDeathScene.Config.SpawnInTrainingRoomOnFail and not currentRun.Cleared then
+			deathMap = "RoomPreRun"
+		end
 		GameState.LocationName = "Location_Home"
 		RandomSetNextInitSeed()
 		SaveCheckpoint({ StartNextMap = deathMap, DevSaveName = CreateDevSaveName( currentRun, { StartNextMap = deathMap } ) })
